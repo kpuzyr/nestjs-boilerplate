@@ -11,7 +11,6 @@ import { COFFEE_BRANDS } from './coffees.constants';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
 
-
 @Injectable()
 export class CoffeesService {
     constructor(
@@ -36,7 +35,8 @@ export class CoffeesService {
         });
     }
 
-    async findOne(id: string) {
+    async findOne(id: number) {
+        console.log(id);
         const coffee = await this.coffeeRepository.findOne(id, {
             relations: ['flavors']
         });
@@ -77,7 +77,7 @@ export class CoffeesService {
     }
 
     async remove(id: string) {
-        const coffee = await this.findOne(id);
+        const coffee = await this.findOne(+id);
         return this.coffeeRepository.remove(coffee);
     }
 
