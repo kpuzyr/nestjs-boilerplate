@@ -20,10 +20,10 @@ export class CoffeesService {
         private readonly flavorRepository: Repository<Flavor>,
         private readonly connection: Connection,
         // private readonly configService: ConfigService
-        @Inject(coffeesConfig.KEY)
-        private readonly coffeesConfiguration: ConfigType<typeof coffeesConfig>
+        // @Inject(coffeesConfig.KEY)
+        // private readonly coffeesConfiguration: ConfigType<typeof coffeesConfig>
     ) {
-        console.log(this.coffeesConfiguration.foo);
+        // console.log(this.coffeesConfiguration.foo);
     }
 
     findAll(paginationQuery: PaginationQueryDto) {
@@ -36,7 +36,6 @@ export class CoffeesService {
     }
 
     async findOne(id: number) {
-        console.log(id);
         const coffee = await this.coffeeRepository.findOne(id, {
             relations: ['flavors']
         });
